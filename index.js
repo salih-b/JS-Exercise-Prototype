@@ -40,9 +40,9 @@ Airplane.prototype.land = function () {
 */
 
 function Person(name, age) {
-this.stomach = [];
-this.age = age;
 this.name = name;
+this.age = age;
+this.stomach = [];
 }
 Person.prototype.eat = function(someFood){
   if (this.stomach.length < 10){
@@ -97,13 +97,17 @@ Car.prototype.fill = function(gallons){
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby(name, age, favoriteToy) {
-Person.call(this, name, age);
-this.play = function(){
-  console.log(`Playing with ${favoriteToy}`);
+function Baby (favoriteToy) {
+Person.call(this, favoriteToy);
+this.favoriteToy = favoriteToy;
 }
+
+Baby.prototype = Object.create(Person.prototype);
+
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`
 }
-ChannelSplitterNode.prototype = Object.create(Person.prototype);
+
 /* 
   TASK 4
 
